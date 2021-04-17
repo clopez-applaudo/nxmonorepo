@@ -6,15 +6,19 @@
   "defaultProject": "api",
   "schematics": {
     "@nrwl/angular:application": {
+      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
       "e2eTestRunner": "cypress"
     },
     "@nrwl/angular:library": {
+      "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest"
     },
-    "@nrwl/angular:component": {}
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
   },
   "projects": {
     "api": {
@@ -63,6 +67,118 @@
           "options": {
             "jestConfig": "apps/api/jest.config.js",
             "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog": {
+      "projectType": "application",
+      "root": "apps/blog",
+      "sourceRoot": "apps/blog/src",
+      "prefix": "blog",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/blog",
+            "index": "apps/blog/src/index.html",
+            "main": "apps/blog/src/main.ts",
+            "polyfills": "apps/blog/src/polyfills.ts",
+            "tsConfig": "apps/blog/tsconfig.app.json",
+            "aot": true,
+            "assets": ["apps/blog/src/favicon.ico", "apps/blog/src/assets"],
+            "styles": ["apps/blog/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/blog/src/environments/environment.ts",
+                  "with": "apps/blog/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "blog:build",
+            "proxyConfig": "apps/blog/proxy.conf.json"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "blog:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "blog:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/blog/src/**/*.ts",
+              "apps/blog/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/blog"],
+          "options": {
+            "jestConfig": "apps/blog/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "blog-e2e": {
+      "root": "apps/blog-e2e",
+      "sourceRoot": "apps/blog-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/blog-e2e/cypress.json",
+            "tsConfig": "apps/blog-e2e/tsconfig.e2e.json",
+            "devServerTarget": "blog:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "blog:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/blog-e2e/**/*.{js,ts}"]
           }
         }
       }
