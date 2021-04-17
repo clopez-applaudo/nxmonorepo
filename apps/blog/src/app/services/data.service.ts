@@ -7,9 +7,7 @@ export interface BlogEntry {
   timestamp?: Date;
 }
 
-@Injectable({
-  providedIn: 'root',
-})
+@Injectable()
 export class DataService {
   constructor(private http: HttpClient) {}
 
