@@ -46,14 +46,16 @@
     class="input is-fullwidth"
     placeholder="Title"
   />
-
-  <button
-    class="button is-info"
-    type="submit"
-    (click)="onSaveEntry(url, times)"
-  >
-    Save
-  </button>
+  <div class="buttons-container">
+    <button
+      class="button is-info"
+      type="submit"
+      (click)="onSaveEntry(url, times)"
+    >
+      Save
+    </button>
+    <button class="button is-info" (click)="onDeleteEntry()">Delete All</button>
+  </div>
 
   <div class="video-containers">
     <ng-container *ngFor="let entry of entries; index as idx">

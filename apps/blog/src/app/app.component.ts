@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
     });
   }
 
-  onDeleteEntry(index: number): void {
-    this.dataService.delete(index).subscribe(() => this.fetch());
+  onDeleteEntry(): void {
+    this.dataService.delete().subscribe(() => this.fetch());
   }
 }

@@ -81,136 +81,16 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 0);
 /******/ })
 /************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports) {
+/******/ ({
 
-module.exports = require("tslib");
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports) {
-
-module.exports = require("@nestjs/common");
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppService = void 0;
-const tslib_1 = __webpack_require__(0);
-const common_1 = __webpack_require__(1);
-let AppService = class AppService {
-    constructor() {
-        this.entries = [
-            {
-                url: 'https://www.youtube.com/watch?v=MIeOEqGZopw',
-                times: 1,
-            },
-        ];
-    }
-    getData() {
-        return this.entries;
-    }
-    create(entry) {
-        const { url, times } = entry;
-        const newEntry = {
-            url,
-            times,
-        };
-        this.entries = [...this.entries, newEntry];
-    }
-    delete() {
-        this.entries = [];
-    }
-};
-AppService = tslib_1.__decorate([
-    common_1.Injectable()
-], AppService);
-exports.AppService = AppService;
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(4);
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-/**
- * This is not a production server yet!
- * This is only a minimal backend to get started.
- */
-Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(0);
-const common_1 = __webpack_require__(1);
-const core_1 = __webpack_require__(5);
-const app_module_1 = __webpack_require__(6);
-function bootstrap() {
-    return tslib_1.__awaiter(this, void 0, void 0, function* () {
-        const app = yield core_1.NestFactory.create(app_module_1.AppModule);
-        const globalPrefix = 'api';
-        app.setGlobalPrefix(globalPrefix);
-        const port = process.env.PORT || 3333;
-        yield app.listen(port, () => {
-            common_1.Logger.log('Listening at ' + port + '/' + globalPrefix);
-        });
-    });
-}
-bootstrap();
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports) {
-
-module.exports = require("@nestjs/core");
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.AppModule = void 0;
-const tslib_1 = __webpack_require__(0);
-const common_1 = __webpack_require__(1);
-const app_controller_1 = __webpack_require__(7);
-const app_service_1 = __webpack_require__(2);
-const serve_static_1 = __webpack_require__(10);
-const path_1 = __webpack_require__(11);
-let AppModule = class AppModule {
-};
-AppModule = tslib_1.__decorate([
-    common_1.Module({
-        imports: [
-            serve_static_1.ServeStaticModule.forRoot({
-                rootPath: path_1.join(__dirname, '...', 'blog'),
-                exclude: ['/api*'],
-            }),
-        ],
-        controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService],
-    })
-], AppModule);
-exports.AppModule = AppModule;
-
-
-/***/ }),
-/* 7 */
+/***/ "./apps/api/src/app/app.controller.ts":
+/*!********************************************!*\
+  !*** ./apps/api/src/app/app.controller.ts ***!
+  \********************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -218,10 +98,10 @@ exports.AppModule = AppModule;
 var _a, _b;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppController = void 0;
-const tslib_1 = __webpack_require__(0);
-const types_1 = __webpack_require__(8);
-const common_1 = __webpack_require__(1);
-const app_service_1 = __webpack_require__(2);
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const types_1 = __webpack_require__(/*! @blog/types */ "./libs/types/src/index.ts");
+const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+const app_service_1 = __webpack_require__(/*! ./app.service */ "./apps/api/src/app/app.service.ts");
 let AppController = class AppController {
     constructor(appService) {
         this.appService = appService;
@@ -263,18 +143,142 @@ exports.AppController = AppController;
 
 
 /***/ }),
-/* 8 */
+
+/***/ "./apps/api/src/app/app.module.ts":
+/*!****************************************!*\
+  !*** ./apps/api/src/app/app.module.ts ***!
+  \****************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-const tslib_1 = __webpack_require__(0);
-tslib_1.__exportStar(__webpack_require__(9), exports);
+exports.AppModule = void 0;
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+const app_controller_1 = __webpack_require__(/*! ./app.controller */ "./apps/api/src/app/app.controller.ts");
+const app_service_1 = __webpack_require__(/*! ./app.service */ "./apps/api/src/app/app.service.ts");
+const serve_static_1 = __webpack_require__(/*! @nestjs/serve-static */ "@nestjs/serve-static");
+const path_1 = __webpack_require__(/*! path */ "path");
+let AppModule = class AppModule {
+};
+AppModule = tslib_1.__decorate([
+    common_1.Module({
+        imports: [
+            serve_static_1.ServeStaticModule.forRoot({
+                rootPath: path_1.join(__dirname, '..', 'blog'),
+                exclude: ['/api*'],
+            }),
+        ],
+        controllers: [app_controller_1.AppController],
+        providers: [app_service_1.AppService],
+    })
+], AppModule);
+exports.AppModule = AppModule;
 
 
 /***/ }),
-/* 9 */
+
+/***/ "./apps/api/src/app/app.service.ts":
+/*!*****************************************!*\
+  !*** ./apps/api/src/app/app.service.ts ***!
+  \*****************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.AppService = void 0;
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const common_1 = __webpack_require__(/*! @nestjs/common */ "@nestjs/common");
+let AppService = class AppService {
+    constructor() {
+        this.entries = [
+            {
+                url: 'https://www.youtube.com/watch?v=MIeOEqGZopw',
+                times: 1,
+            },
+        ];
+    }
+    getData() {
+        return this.entries;
+    }
+    create(entry) {
+        const { url, times } = entry;
+        const newEntry = {
+            url,
+            times,
+        };
+        this.entries = [...this.entries, newEntry];
+    }
+    delete() {
+        this.entries = [];
+    }
+};
+AppService = tslib_1.__decorate([
+    common_1.Injectable()
+], AppService);
+exports.AppService = AppService;
+
+
+/***/ }),
+
+/***/ "./apps/api/src/main.ts":
+/*!******************************!*\
+  !*** ./apps/api/src/main.ts ***!
+  \******************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+/**
+ * This is not a production server yet!
+ * This is only a minimal backend to get started.
+ */
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+const core_1 = __webpack_require__(/*! @nestjs/core */ "@nestjs/core");
+const app_module_1 = __webpack_require__(/*! ./app/app.module */ "./apps/api/src/app/app.module.ts");
+function bootstrap() {
+    return tslib_1.__awaiter(this, void 0, void 0, function* () {
+        const app = yield core_1.NestFactory.create(app_module_1.AppModule);
+        const globalPrefix = 'api';
+        app.setGlobalPrefix(globalPrefix);
+        const port = process.env.PORT || 3333;
+        yield app.listen(port, () => {
+            console.log('Listening at ' + port);
+        });
+    });
+}
+bootstrap();
+
+
+/***/ }),
+
+/***/ "./libs/types/src/index.ts":
+/*!*********************************!*\
+  !*** ./libs/types/src/index.ts ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", { value: true });
+const tslib_1 = __webpack_require__(/*! tslib */ "tslib");
+tslib_1.__exportStar(__webpack_require__(/*! ./lib/types */ "./libs/types/src/lib/types.ts"), exports);
+
+
+/***/ }),
+
+/***/ "./libs/types/src/lib/types.ts":
+/*!*************************************!*\
+  !*** ./libs/types/src/lib/types.ts ***!
+  \*************************************/
+/*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -283,17 +287,73 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 
 /***/ }),
-/* 10 */
+
+/***/ 0:
+/*!************************************!*\
+  !*** multi ./apps/api/src/main.ts ***!
+  \************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(/*! /home/CarlosLopez/Documents/NxMonorepo/blog/apps/api/src/main.ts */"./apps/api/src/main.ts");
+
+
+/***/ }),
+
+/***/ "@nestjs/common":
+/*!*********************************!*\
+  !*** external "@nestjs/common" ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@nestjs/common");
+
+/***/ }),
+
+/***/ "@nestjs/core":
+/*!*******************************!*\
+  !*** external "@nestjs/core" ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("@nestjs/core");
+
+/***/ }),
+
+/***/ "@nestjs/serve-static":
+/*!***************************************!*\
+  !*** external "@nestjs/serve-static" ***!
+  \***************************************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = require("@nestjs/serve-static");
 
 /***/ }),
-/* 11 */
+
+/***/ "path":
+/*!***********************!*\
+  !*** external "path" ***!
+  \***********************/
+/*! no static exports found */
 /***/ (function(module, exports) {
 
 module.exports = require("path");
 
+/***/ }),
+
+/***/ "tslib":
+/*!************************!*\
+  !*** external "tslib" ***!
+  \************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+module.exports = require("tslib");
+
 /***/ })
-/******/ ])));
+
+/******/ })));
 //# sourceMappingURL=main.js.map

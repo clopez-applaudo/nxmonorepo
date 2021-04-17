@@ -14,7 +14,7 @@ export class DataService {
     return this.http.post('/api/entries', entry);
   }
 
-  delete(id: number) {
-    return this.http.delete(`/api/entries/${id}`);
+  delete() {
+    return this.http.delete(`/api/entries/`);
   }
 }
