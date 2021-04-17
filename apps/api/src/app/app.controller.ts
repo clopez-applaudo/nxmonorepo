@@ -25,8 +25,8 @@ export class AppController {
     return this.appService.create(body);
   }
 
-  @Delete(':id')
-  delete(@Param('id', ParseIntPipe) id: number) {
-    return this.appService.delete(id);
+  @Delete()
+  delete() {
+    return this.appService.delete();
   }
 }

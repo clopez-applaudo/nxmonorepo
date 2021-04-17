@@ -2,9 +2,39 @@
   display: block;
   font-family: sans-serif;
   min-width: 300px;
-  max-width: 600px;
+  max-width: 960px;
   padding: 50px;
   margin: auto;
+}
+
+.main-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.instructions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  h4 {
+    color: rgb(168, 46, 46);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+
+  .spanish,
+  .english {
+    padding: 0 15px;
+  }
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.video-containers {
+  display: flex;
+  flex-flow: row wrap;
 }
 
 input {

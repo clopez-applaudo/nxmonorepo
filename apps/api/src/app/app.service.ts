@@ -5,9 +5,8 @@ import { BlogEntry } from '@blog/types';
 export class AppService {
   entries: BlogEntry[] = [
     {
-      title: 'Example Title',
-      body: 'Example Blog Entry',
-      timestamp: new Date(),
+      url: 'https://www.youtube.com/watch?v=MIeOEqGZopw',
+      times: 1,
     },
   ];
 
@@ -16,17 +15,16 @@ export class AppService {
   }
 
   create(entry: BlogEntry) {
-    const { title, body } = entry;
+    const { url, times } = entry;
     const newEntry = {
-      title,
-      body,
-      timestamp: new Date(),
+      url,
+      times,
     };
 
     this.entries = [...this.entries, newEntry];
   }
 
-  delete(id: number) {
-    this.entries = this.entries.filter((_, idx) => idx !== id);
+  delete() {
+    this.entries = [];
   }
 }

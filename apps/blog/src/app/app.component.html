@@ -1,29 +1,73 @@
-<h1 class="title">Blog test</h1>
+<div class="main-container">
+  <h2 class="title">Blog/Streaming Test</h2>
 
-<input #titleInput class="input is-fullwidth" placeholder="Title" />
+  <div class="instructions">
+    <div class="spanish">
+      <h4>Instrucciones</h4>
+      <ul>
+        <li>
+          Inserta la url del video y define cuantas veces quieres que se
+          duplique (maximo 20)
+        </li>
+        <li>
+          Los videos solo han sido probados directamente desde Youtube por el
+          momento
+        </li>
+        <li>
+          Puedes borrar la lista de videos con el boton para iniciar de nuevo
+        </li>
+      </ul>
+    </div>
+    <div class="english">
+      <h4>Instructions</h4>
+      <ul>
+        <li>
+          Insert video url and select how many duplicates you want for it (max
+          20)
+        </li>
+        <li>The videos have been tested from Youtube only for the moment</li>
+        <li>You can delete the list with the button to start over</li>
+      </ul>
+    </div>
+  </div>
 
-<input
-  #bodyInput
-  class="input is-fullwidth"
-  placeholder="Start typing here..."
-  (keydown.ENTER)="onSaveEntry(titleInput, bodyInput)"
-/>
+  <input
+    #url
+    class="input is-fullwidth"
+    placeholder="Add url here..."
+    (keydown.ENTER)="onSaveEntry(url, times)"
+  />
 
-<button
-  class="button is-info"
-  type="submit"
-  (click)="onSaveEntry(titleInput, bodyInput)"
->
-  Save
-</button>
+  <input
+    #times
+    type="number"
+    min="0"
+    max="20"
+    class="input is-fullwidth"
+    placeholder="Title"
+  />
 
-<div class="card" *ngFor="let entry of entries; index as idx">
-  <div class="card-content">
-    <h1 class="title">{{ entry.title }}</h1>
-    <button class="delete is-small" (click)="onDeleteEntry(idx)"></button>
-    <p>"{{ entry.body }}"</p>
-    <p class="is-size-7 has-text-grey-lighter">
-      {{ entry.timestamp | date: 'short' }}
-    </p>
+  <button
+    class="button is-info"
+    type="submit"
+    (click)="onSaveEntry(url, times)"
+  >
+    Save
+  </button>
+
+  <div class="video-containers">
+    <ng-container *ngFor="let entry of entries; index as idx">
+      <div class="card" *ngFor="let copy of entry.times">
+        <div class="card-content">
+          <iframe
+            [src]="entry.url"
+            width="208"
+            height="167"
+            frameborder="0"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </ng-container>
   </div>
 </div>
