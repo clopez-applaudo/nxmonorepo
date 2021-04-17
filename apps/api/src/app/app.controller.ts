@@ -1,3 +1,4 @@
+import { BlogEntry } from '@blog/types';
 import {
   Body,
   Controller,
@@ -8,7 +9,7 @@ import {
   Post,
 } from '@nestjs/common';
 
-import { AppService, BlogEntry } from './app.service';
+import { AppService } from './app.service';
 
 @Controller('entries')
 export class AppController {
