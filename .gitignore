@@ -1,6 +1,8 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # compiled output <-- erase dist before uploading to heroku
+# /dist
+/apps
 /tmp
 /out-tsc
 
