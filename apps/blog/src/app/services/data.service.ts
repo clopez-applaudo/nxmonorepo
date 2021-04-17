@@ -1,11 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-export interface BlogEntry {
-  title: string;
-  body: string;
-  timestamp?: Date;
-}
+import { BlogEntry } from '@blog/types';
 
 @Injectable()
 export class DataService {

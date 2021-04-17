@@ -14,6 +14,7 @@
   "projects": {
     "api": { "tags": [] },
     "blog": { "tags": [] },
-    "blog-e2e": { "tags": [], "implicitDependencies": ["blog"] }
+    "blog-e2e": { "tags": [], "implicitDependencies": ["blog"] },
+    "types": { "tags": [] }
   }
 }
